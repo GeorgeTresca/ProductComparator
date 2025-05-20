@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Component
 public class AppDateProvider {
 
-    private LocalDate today = LocalDate.of(2025, 5, 6);
+    private LocalDate today = LocalDate.of(2025, 5, 1);
 
     public LocalDate getToday() {
         return today;

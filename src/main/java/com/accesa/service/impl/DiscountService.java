@@ -23,6 +23,8 @@ public class DiscountService implements IDiscountService {
         this.appDateProvider = appDateProvider;
     }
 
+    // Filters discounts active on the virtual "today" date, then sorts by highest discount percentage
+    // Returns the top N results to highlight the best current deals
     @Override
     public List<BestDiscountDTO> getBestDiscounts(int topN) {
         LocalDate today = appDateProvider.getToday();
@@ -35,6 +37,7 @@ public class DiscountService implements IDiscountService {
                 .collect(Collectors.toList());
     }
 
+    // Identifies discounts that start exactly on the virtual "today" date
     @Override
     public List<NewDiscountDTO> getNewDiscounts() {
         LocalDate today = appDateProvider.getToday();
