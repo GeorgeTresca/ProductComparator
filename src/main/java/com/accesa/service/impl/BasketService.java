@@ -23,8 +23,8 @@ public class BasketService implements IBasketService {
         this.appDateProvider = appDateProvider;
     }
 
-    // For each product in the user's basket it retrieves all matching offers (date <= today), keeps the latest offer per store
-    // Then, selects the offer with the lowest price and returns the cheapest combination and the total cost
+/** For each product in the user's basket it retrieves all matching offers (date <= today), keeps the latest offer per store
+    Then, selects the offer with the lowest price and returns the cheapest combination and the total cost */
     @Override
     public BasketResponseDTO optimizeBasket(BasketRequestDTO request) {
         LocalDate today = appDateProvider.getToday();

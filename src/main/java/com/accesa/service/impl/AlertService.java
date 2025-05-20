@@ -23,8 +23,8 @@ public class AlertService implements IAlertService {
         this.appDateProvider = appDateProvider;
     }
 
-    // For a given product name and target price
-    // retrieves the latest offer (per store) where date <= today, then filters for offers where price <= target price
+    /** For a given product name and target price
+     retrieves the latest offer (per store) where date <= today, then filters for offers where price <= target price */
     @Override
     public List<PriceAlertMatchDTO> checkAlerts(PriceAlertRequestDTO request) {
         LocalDate today = appDateProvider.getToday();

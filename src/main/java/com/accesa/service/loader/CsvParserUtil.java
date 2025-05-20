@@ -15,6 +15,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses product and discount CSV files using OpenCSV.
+ * Extracts store name and date from the filename and attaches them to each entry.
+ * Skips malformed lines and logs warnings instead of failing.
+ * Assumes semicolon-separated format based on dataset specification.
+ */
 public class CsvParserUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(CsvParserUtil.class);

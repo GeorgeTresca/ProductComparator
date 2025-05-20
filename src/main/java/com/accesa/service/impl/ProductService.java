@@ -17,8 +17,8 @@ public class ProductService implements IProductService {
         this.dataLoaderService = dataLoaderService;
     }
 
-    // Retrieves all previous prices for a given product ID, while also implementing optional filters include store,
-    // brand, and categorv. The result is sorted chronologically to support trend visualization
+    /** Retrieves all previous prices for a given product ID, while also implementing optional filters include store,
+     brand, and categorv. The result is sorted chronologically to support trend visualization */
     @Override
     public List<PriceHistoryPointDTO> getPriceHistory(String productId, String store, String brand, String category) {
         return dataLoaderService.getAllProducts().stream()

@@ -25,8 +25,8 @@ public class RecommendationService implements IRecommendationService {
         this.appDateProvider = appDateProvider;
     }
 
-    // For a given product name - retrieves all offers with a date <= today, then keeps the latest offer per store
-    //After that, it normalizes quantity units and finally calculates price per unit and sorts ascending
+    /** For a given product name - retrieves all offers with a date <= today, then keeps the latest offer per store
+    After that, it normalizes quantity units and finally calculates price per unit and sorts ascending */
     @Override
     public List<BestValueProductDTO> getBestValueForProduct(String productName) {
         LocalDate today = appDateProvider.getToday();
