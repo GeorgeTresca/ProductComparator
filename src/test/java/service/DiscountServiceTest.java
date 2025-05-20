@@ -29,19 +29,13 @@ public class DiscountServiceTest {
                         createDiscount("P2", "Cafea", "Kaufland", 10,
                                 LocalDate.of(2025, 5, 1), LocalDate.of(2025, 5, 5)),
                         createDiscount("P3", "Zahar", "Profi", 30,
-                                LocalDate.of(2025, 5, 6), LocalDate.of(2025, 5, 9))
+                                LocalDate.of(2025, 5, 6), LocalDate.of(2025, 5, 9)),
+                        createDiscount("P3", "Paine", "Profi", 15,
+                                LocalDate.of(2025, 5, 5), LocalDate.of(2025, 5, 9))
+
                 );
             }
 
-            @Override
-            public List<Product> getAllProducts() {
-                return List.of(); // not needed here
-            }
-
-            @Override
-            public void loadAll() {
-                // not needed in test
-            }
         };
 
         AppDateProvider mockDateProvider = new AppDateProvider() {
@@ -58,9 +52,9 @@ public class DiscountServiceTest {
     void shouldReturnDiscountsSortedByPercent() {
         List<BestDiscountDTO> result = discountService.getBestDiscounts(3);
 
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
         assertEquals("P1", result.get(0).getProductId());
-        assertEquals("P2", result.get(1).getProductId());
+        assertEquals("P3", result.get(1).getProductId());
     }
 
     @Test
@@ -68,6 +62,14 @@ public class DiscountServiceTest {
         List<BestDiscountDTO> result = discountService.getBestDiscounts(1);
         assertEquals(1, result.size());
         assertEquals("P1", result.get(0).getProductId());
+    }
+
+    @Test
+    void shouldReturnOnlyDiscountsStartingToday() {
+        List<com.accesa.dto.NewDiscountDTO> result = discountService.getNewDiscounts();
+
+        assertEquals(1, result.size());
+        assertEquals("P3", result.get(0).getProductId());
     }
 
     private Discount createDiscount(String id, String name, String store, int percent, LocalDate from, LocalDate to) {
@@ -81,5 +83,7 @@ public class DiscountServiceTest {
         d.setToDate(to);
         return d;
     }
+
+
 }
 

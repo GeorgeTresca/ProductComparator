@@ -1,6 +1,7 @@
 package com.accesa.service.impl;
 
 import com.accesa.dto.BestDiscountDTO;
+import com.accesa.dto.NewDiscountDTO;
 import com.accesa.model.Discount;
 import com.accesa.service.IDiscountService;
 import com.accesa.config.AppDateProvider;
@@ -31,6 +32,16 @@ public class DiscountService implements IDiscountService {
                 .sorted(Comparator.comparingInt(Discount::getPercentageOfDiscount).reversed())
                 .limit(topN)
                 .map(BestDiscountDTO::from)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NewDiscountDTO> getNewDiscounts() {
+        LocalDate today = appDateProvider.getToday();
+
+        return dataLoaderService.getAllDiscounts().stream()
+                .filter(d -> d.getFromDate().equals(today))
+                .map(NewDiscountDTO::from)
                 .collect(Collectors.toList());
     }
 }
