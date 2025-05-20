@@ -4,7 +4,6 @@ import com.accesa.config.AppDateProvider;
 import com.accesa.dto.BestValueProductDTO;
 import com.accesa.model.Product;
 import com.accesa.service.IRecommendationService;
-import com.accesa.service.impl.DataLoaderService;
 import com.accesa.util.UnitNormalizer;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +25,8 @@ public class RecommendationService implements IRecommendationService {
         this.appDateProvider = appDateProvider;
     }
 
+    // For a given product name - retrieves all offers with a date <= today, then keeps the latest offer per store
+    //After that, it normalizes quantity units and finally calculates price per unit and sorts ascending
     @Override
     public List<BestValueProductDTO> getBestValueForProduct(String productName) {
         LocalDate today = appDateProvider.getToday();
