@@ -31,6 +31,12 @@ Helpers for unit conversion and filename parsing
 mvn clean install
 mvn spring-boot:run
 ```
+
+Once running, visit:
+```bash
+http://localhost:8080/swagger-ui/index.html
+```
+
 ## 3. Assumptions and Simplifications
 
 CSVs use ; as a delimiter and are located in resources/data
